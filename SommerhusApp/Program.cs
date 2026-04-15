@@ -14,16 +14,27 @@ SommerhusService service = new SommerhusService(register);
 //    Console.WriteLine(sommerhus);
 //}
 
-Filter filter = new Filter();
-filter.MinBeds = 4;
-filter.AllowPets = true;
-filter.Dishwasher = true;
-filter.MaxPrice = 4000;
+//Filter filter = new Filter();
+//filter.MinBeds = 4;
+//filter.AllowPets = true;
+//filter.Dishwasher = true;
+//filter.MaxPrice = 4000;
 
-List<Sommerhus> huse = service.GetByFilter(filter);
+//List<Sommerhus> huse = service.GetByFilter(filter);
 
-foreach (var sommerhus in huse)
+//foreach (var sommerhus in huse)
+//{
+//    Console.WriteLine(sommerhus);
+//}
+//Console.WriteLine("Antal= " + huse.Count);
+
+
+//List<Sommerhus> sortHuse = service.SortByPrice();
+//List<Sommerhus> sortHuse = service.SortByDistance();
+List<Sommerhus> sortHuse = service.SortByBeds();
+
+foreach (var sommerhus in sortHuse)
 {
     Console.WriteLine(sommerhus);
 }
-Console.WriteLine("Antal= " + huse.Count);
+Console.WriteLine("Antal= " + sortHuse.Count);

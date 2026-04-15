@@ -109,6 +109,43 @@ namespace SommerhusLib
 
 
 
+
+        /*
+         * sortering
+         */
+
+        public List<Sommerhus> SortByPrice()
+        {
+            List<Sommerhus> sommerhuse = _register.GetAll();
+            List<Sommerhus> resultat = new List<Sommerhus>();
+
+            while (sommerhuse.Count > 0)
+            {
+                Sommerhus mindstPrisHus = getMindstePris(sommerhuse);
+
+                resultat.Add(mindstPrisHus);
+                sommerhuse.Remove(mindstPrisHus);
+            }
+
+            return resultat;
+        }
+
+        private Sommerhus getMindstePris(List<Sommerhus> sommerhuse)
+        {
+            Sommerhus resultatHus = sommerhuse.First();
+
+            foreach (Sommerhus hus in sommerhuse)
+            {
+                if (hus.PricePrWeek < resultatHus.PricePrWeek)
+                {
+                    resultatHus = hus;
+                }
+            }
+
+            return resultatHus;
+        }
+
+
         /* 
          * Ekstra
          */
@@ -288,6 +325,114 @@ namespace SommerhusLib
             }
 
             return sommerhuse;
+        }
+
+
+        /*
+         * Ekstra sort
+         */
+        public List<Sommerhus> SortByDistance()
+        {
+            List<Sommerhus> resultatHuse = _register.GetAll();
+
+
+            for (int i = 0; i < resultatHuse.Count; i++)
+            {
+                int maxIx = resultatHuse.Count - i - 1;
+                for (int j = 0; (j < maxIx); j++)
+                {
+                    if (resultatHuse[j].DistanceToBeach > resultatHuse[j + 1].DistanceToBeach)
+                    {
+                        Swap(resultatHuse, j, j + 1);
+                    }
+                }
+            }
+            return resultatHuse;
+        }
+
+
+        public List<Sommerhus> SortByBeds()
+        {
+            List<Sommerhus> resultatHuse = _register.GetAll();
+
+            for (int i = 0; i < resultatHuse.Count; i++)
+            {
+                for (int j = i; j > 0; j--)
+                {
+                    if (resultatHuse[j].NoOfBeds < resultatHuse[j - 1].NoOfBeds)
+                    {
+                        Swap(resultatHuse, j, j - 1);
+                    }
+                }
+            }
+            return resultatHuse;
+        }
+
+
+        private void Swap(List<Sommerhus> resultatHuse, int x, int y)
+        {
+            Sommerhus tmp = resultatHuse[x];
+            resultatHuse[x] = resultatHuse[y];
+            resultatHuse[y] = tmp;
+        }
+
+
+        // Meget ekstra
+        public List<Sommerhus> SortBySize()
+        {
+            List<Sommerhus> resultatHuse = _register.GetAll();
+
+            resultatHuse = MergeSort(resultatHuse, 0, resultatHuse.Count - 1);
+
+            return resultatHuse;
+        }
+        
+        private List<Sommerhus> MergeSort(List<Sommerhus> resultatHuse, int left, int right)
+        {
+            int midt = (left + right) / 2;
+            MergeSort(resultatHuse, left, midt);
+            MergeSort(resultatHuse, midt + 1, right);
+
+            Merge(resultatHuse, left, midt, right);
+
+            return resultatHuse;
+        }
+
+        private void Merge(List<Sommerhus> resultatHuse, int left, int midt, int right)
+        {
+            if (left < right)
+            {
+                List<Sommerhus> temp = new List<Sommerhus>();
+                int i = left;
+                int j = midt + 1;
+                while (i <= midt && j <= right)
+                {
+                    if (resultatHuse[i].Size < resultatHuse[j].Size)
+                    {
+                        temp.Add(resultatHuse[i]);
+                        i++;
+                    }
+                    else
+                    {
+                        temp.Add(resultatHuse[j]);
+                        j++;
+                    }
+                }
+                while (i <= midt)
+                {
+                    temp.Add(resultatHuse[i]);
+                    i++;
+                }
+                while (j <= right)
+                {
+                    temp.Add(resultatHuse[j]);
+                    j++;
+                }
+                for (int k = left; k <= right; k++)
+                {
+                    resultatHuse[k] = temp[k - left];
+                }
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace SommerhusLib.model
         // konstruktør
         public Sommerhus()
         {
-            _rentId =0;
+            RentId =0;
             _streetAndNumber ="";
             _postalNo =0;
             _city ="";
@@ -43,7 +43,7 @@ namespace SommerhusLib.model
         public Sommerhus(int rentId, string streetAndNumber, int postalNo, string city, int distanceToBeach, int size, int noOfBeds, bool spa, 
                           bool allowPets, bool dishwasher, bool washingMachine, int price)
         {
-            _rentId =rentId;
+            RentId =rentId;
             _streetAndNumber =streetAndNumber;
             _postalNo =postalNo;
             _city =city;
@@ -60,7 +60,15 @@ namespace SommerhusLib.model
         public int RentId
         {
             get { return _rentId; }
-            set { _rentId =value; }
+            set { 
+                if (value < 0)
+                {
+                    throw new ArgumentException("RentId skal være positivt");
+                }
+                
+                _rentId =value; 
+            
+            }
         }
 
         public string StreetAndNumber

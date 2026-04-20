@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36915.13 d17.14
+VisualStudioVersion = 17.14.36915.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SommerhusApp", "SommerhusApp\SommerhusApp.csproj", "{C8539A6B-BFDE-4FF7-895C-5B57534130EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SommerhusLib", "SommerhusLib\SommerhusLib.csproj", "{F92E386F-085E-456E-91FE-CEA0D690BB03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViserBetingelser", "ViserBetingelser\ViserBetingelser.csproj", "{E10E0A12-F74D-4811-B778-C6FE3EA8779B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F92E386F-085E-456E-91FE-CEA0D690BB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F92E386F-085E-456E-91FE-CEA0D690BB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F92E386F-085E-456E-91FE-CEA0D690BB03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E10E0A12-F74D-4811-B778-C6FE3EA8779B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10E0A12-F74D-4811-B778-C6FE3EA8779B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10E0A12-F74D-4811-B778-C6FE3EA8779B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10E0A12-F74D-4811-B778-C6FE3EA8779B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
